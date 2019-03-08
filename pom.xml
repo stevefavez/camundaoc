@@ -11,6 +11,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>cockpit-oc</module>
+        <module>loan-approval-oc</module>
     </modules>
 
 
