@@ -70,14 +70,26 @@ So, let's start by commenting the "application.yml"
 5. open openshift web console (type minishift console) - dig into your project "camuna"
 and see applications -> routes - You should see a new route to access your new cockpit-oc pod.
 
-##Important Notice
+###Important Notice
 As you can see, using fabric8 help you to test your code easily in openshift, without having
 to "push" code in git in order to run some .s2i images. But this was just for "demo" purpose, 
 in the real life, I'd rather have some jenkins pipeline or a source to image build to ensure that what's pushed in git
 is  what you get on your openshift cluster
 
+##Testing with a process
+Now, we'll deploy a process - as a "Pod" in our openshift project. The process is under loan-approval-oc and contains
+only one human task and on java action.
+It's really important that you set the System Task as "Asynchronous Before and After", to ensure that the task is only
+executed by the process engine on which the process is deployed. (Otherwise, juste after a human task, if not asynchronous, it will run on the process engine of the human task...)
 
+Now, to deploy it, you'll have to execute the following maven command into the loan-approval-oc projet :
 
+    mvn clean fabric8:deploy
+
+This will not only deploy the pod, but also deploy in Camunda, so, if you dig into the cockpit, you must be able to
+see the new process, run it and see some messages in the console of the pod of the loan-approval-oc.
+
+## Next  step - We'll see how to integrate SSO using Redhat SSO / Keycloak... 
 
 
 
