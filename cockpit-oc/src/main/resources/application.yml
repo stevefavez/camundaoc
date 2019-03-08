@@ -1,0 +1,21 @@
+camunda:
+  bpm:
+    job-execution:
+      enabled: false
+      deployment-aware: true
+    admin-user:
+      id: master
+      password: changeit
+      firstName: Master
+    filter:
+      create: All tasks
+    database:
+      type: postgres
+#      schema-update: create
+spring:
+  datasource:
+#    url: "jdbc:postgresql://localhost:5432/camundadb"
+    url: "jdbc:postgresql://postgresql.camunda.svc:5432/camundadb"
+    username: camunda
+    password: camunda
+    driver-class-name: org.postgresql.Driver
